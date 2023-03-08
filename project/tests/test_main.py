@@ -1,3 +1,11 @@
+"""
+Filename        :   test_main.py
+Description     :   This file contains tests
+Author          :   Muhammad Sesay
+Email           :   contact@maej.dev
+Started writing :   8/March/2023
+Completed on    :   in progress
+"""
 import os
 import json
 import unittest

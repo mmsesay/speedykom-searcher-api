@@ -35,7 +35,9 @@ A simple web api that enable users to search for health related topics and a cou
   
 
 ## App Endpoints
-- GET: `/api/v1/search/<keyword>` the keyword is a string like: `health benefits` to query the records 
+- GET: `/api/v1/search/<keyword>` the keyword is a string like: `health benefits` to query the records. **Note: This is a protected route that needs an authorization header** 
+- POST: `/api/v1/register` Creates a new user with payload `{"email":"test@test.com", "password":"test"}`
+- POST: `/api/v1/login` Login a user with payload `{"email":"test@test.com", "password":"test"}`
 
 
 ## Author

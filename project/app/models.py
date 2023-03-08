@@ -1,6 +1,13 @@
+"""
+Filename        :   models.py
+Description     :   This file contains the database model for the user
+Author          :   Muhammad Sesay
+Email           :   contact@maej.dev
+Started writing :   8/March/2023
+Completed on    :   in progress
+"""
 from datetime import datetime
-from app import db, app
-import jwt
+from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
