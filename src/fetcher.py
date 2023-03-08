@@ -1,7 +1,21 @@
+"""
+Filename        :   fetcher.py
+Description     :   This file has a function that make request to the external api
+Author          :   Muhammad Sesay
+Email           :   contact@maej.dev
+Started writing :   8/March/2023
+Completed on    :   in progress
+"""
+
 import requests
 from flask import jsonify
 
 def get_data_from_health_gov(params: str):
+    """
+    Fetches data from health gov health finder
+    :param params: this is the keyword to query
+    :return : the json data response if available or an error
+    """
     # make a call to the external api and get the response
     response = requests.get(f'https://health.gov/myhealthfinder/api/v3/topicsearch.json?keyword={params}').json()
 
