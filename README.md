@@ -9,9 +9,6 @@ A simple web api that enable users to search for health related topics and a cou
 
 ## Getting Started
 
-**The project comes shipped with linters config for ruby on rails, so ensure you have Rubocop**
-**installed on your local environment**
-
 - **To get a local copy of the repository please run the following commands on your terminal:**
    - `git clone git@github.com:mmsesay/speedykom-searcher-api.git`
    - `cd speedykom-searcher-api`
