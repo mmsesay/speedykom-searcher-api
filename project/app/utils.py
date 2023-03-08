@@ -1,6 +1,5 @@
 import jwt
-import datetime
-from app import src
+from datetime import datetime
 
 def encode_auth_token(self, user_id):
     """
@@ -15,12 +14,12 @@ def encode_auth_token(self, user_id):
         }
         return jwt.encode(
             payload,
-            src.config.get('SECRET_KEY'),
+            "mysecret",
             algorithm='HS256'
         )
     except Exception as e:
         return e
-    
+
 
 def decode_auth_token(auth_token):
     """
@@ -29,7 +28,7 @@ def decode_auth_token(auth_token):
     :return: integer|string
     """
     try:
-        payload = jwt.decode(auth_token, src.config.get('SECRET_KEY'))
+        payload = jwt.decode(auth_token, "mysecret",)
         return payload['sub']
     except jwt.ExpiredSignatureError:
         return 'Signature expired. Please log in again.'

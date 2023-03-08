@@ -2,6 +2,27 @@ from flask import (jsonify, request, make_response)
 from app import app, db
 from app.fetcher import get_data_from_health_gov
 from app.models import User
+import jwt
+from datetime import datetime
+
+def encode_auth_token(self, user_id):
+    """
+    Generates the Auth Token
+    :return: string
+    """
+    try:
+        payload = {
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
+            'iat': datetime.datetime.utcnow(),
+            'sub': user_id
+        }
+        return jwt.encode(
+            payload,
+            "devkey",
+            algorithm='HS256'
+        )
+    except Exception as e:
+        return e
 
 @app.route("/api/v1/search/<keyword>", methods=['GET'])
 def search_keyword(keyword):
@@ -37,12 +58,9 @@ def register():
             db.session.add(user)
             db.session.commit()
 
-            # generate the auth token
-            auth_token = user.encode_auth_token(user.id)
             responseObject = {
                 'status': 'success',
-                'message': 'Successfully registered.',
-                'auth_token': auth_token.decode()
+                'message': 'Successfully registered.'
             }
             return make_response(jsonify(responseObject)), 201
         except Exception as e:

@@ -1,5 +1,6 @@
 from datetime import datetime
-from app import db
+from app import db, app
+import jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -23,7 +24,6 @@ class User(db.Model):
     # verify password function
     def verify_password(self, password):
         return check_password_hash(self.password, password)
-
 
     def __repr__(self):
         return f'User : {self.email}'

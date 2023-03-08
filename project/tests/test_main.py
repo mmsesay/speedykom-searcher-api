@@ -20,19 +20,11 @@ class StartupTest(unittest.TestCase):
  
     # executed after each test
     def tearDown(self):
-        # with app.app_context():
-        #     db.drop_all()
-        pass
-
-    def test_hello_page(self):
-        """Validate empty user login fields"""
-        response = self.client.get("/api/v1/hello")
-        jsondata = json.loads(response.get_data(as_text=True))
-        self.assertEqual('Hello', jsondata['data'])
-        # self.assertIn(b'H', response.data)
+        with app.app_context():
+            db.drop_all()
 
     def test_saving_user(self):
-        """User save successfully"""
+        """Test user saves successfully"""
         with app.app_context():
             user = User(
                 email='test@test.com',
@@ -43,6 +35,23 @@ class StartupTest(unittest.TestCase):
             db.session.commit()
 
             assert user in db.session
+
+    def test_registration(self):
+        """ Test for user registration """
+
+        response = self.client.post(
+            '/api/v1/register',
+            data = json.dumps(dict(
+                email='test@test.com',
+                password='123456'
+            )),
+            content_type='application/json'
+        )
+        data = json.loads(response.data)
+        self.assertTrue(data['status'] == 'success')
+        self.assertTrue(data['message'] == 'Successfully registered.')
+        self.assertEqual(response.status_code, 201)
+
 
 
 if __name__ == "__main__":

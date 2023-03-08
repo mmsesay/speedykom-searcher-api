@@ -15,11 +15,23 @@ A simple web api that enable users to search for health related topics and a cou
    - `python3 -m venv venv` to create a virtual environment
    - `source venv/bin/activate` to activate the virtual environment
    - `pip install -r requirements.txt` to intall the project dependencies
+
+- **Please run the following commands on your terminal to setup the db:**
+    - `cd project` to access the project main directory
+    - `python` or `python3` to access the interactive shell
+    - `from app import db, app` this commands starts references the db and flask app
+    - `with app.app_context():` press enter after
+    - `db.create_all()` press enter again
+    - press `ctl + d` to exit the shell
+
+- **Please run the following commands on your terminal to start the app:**
+   - `cd ..` to come out of the main directory
    - `export FLASK_APP=project/server.py` to set the app for running
    - `flask run` to start the server
 
 - **To run the tests please run the following commands on your terminal:**
     - `git clone https://github.com/mmsesay/speedykom-searcher-api.git` Only if you have cloned it in the previous step above
+    - `pytest -v`
   
 
 ## App Endpoints
