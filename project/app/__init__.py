@@ -1,5 +1,6 @@
+# __init__.py
 """
-Filename        :   app.py
+Filename        :   __init__.py
 Description     :   This file contains the whole logic for the application
 Author          :   Muhammad Sesay
 Email           :   contact@maej.dev
@@ -9,7 +10,6 @@ Completed on    :   in progress
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from src.fetcher import get_data_from_health_gov
 
 app = Flask(__name__)
 
@@ -19,15 +19,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-@app.route("/api/v1/search/<keyword>", methods=['GET'])
-def search_keyword(keyword):
-    """
-    Fetches data from health gov health finder
-    :params keyword: this is the keyword to query
-    :return : the response from the invoked function
-    """
-    return get_data_from_health_gov(keyword)
+from app import routes
 
-
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+  app.run(debug=True)

@@ -15,7 +15,7 @@ A simple web api that enable users to search for health related topics and a cou
    - `python3 -m venv venv` to create a virtual environment
    - `source venv/bin/activate` to activate the virtual environment
    - `pip install -r requirements.txt` to intall the project dependencies
-   - `export FLASK_APP=app.py` to set the app for running
+   - `export FLASK_APP=project/server.py` to set the app for running
    - `flask run` to start the server
 
 - **To run the tests please run the following commands on your terminal:**

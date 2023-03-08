@@ -9,7 +9,7 @@ class User(db.Model):
     :param db.Model: an inheritance of the database model
     """
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), nullable=False)
     hash_password = db.Column(db.String(64))
     created_at = db.Column(db.DateTime, nullable=False,
                             default=datetime.now)
