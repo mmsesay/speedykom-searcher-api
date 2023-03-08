@@ -26,6 +26,8 @@ A simple web api that enable users to search for health related topics and a cou
 - GET: `/api/v1/search/<keyword>` the keyword is a string like: `health benefits` to query the records 
 
 
+## Author
+
 👤 **Muhammad Sesay**
 
 - GitHub: [@mmsesay](https://github.com/mmsesay)
