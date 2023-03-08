@@ -1,0 +1,1 @@
+# speedykom-searcher-api
