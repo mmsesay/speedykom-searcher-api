@@ -6,6 +6,7 @@ Email           :   contact@maej.dev
 Started writing :   8/March/2023
 Completed on    :   in progress
 """
+from datetime import timedelta
 from flask import (jsonify, request, make_response)
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 
@@ -103,7 +104,7 @@ def login():
             })), 404
         
         # login the user encode_auth_token(user.id) # 
-        auth_token = create_access_token(identity=user.id) # encode_auth_token(user.id)
+        auth_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=1)) # encode_auth_token(user.id)
 
         return make_response(jsonify({
             'status': 'success',
