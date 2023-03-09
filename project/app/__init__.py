@@ -10,8 +10,10 @@ Completed on    :   in progress
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app) # enable cors
 
 # app secret key
 app.config['SECRET_KEY'] = 'devkey'
