@@ -62,7 +62,7 @@ def single_records(id):
 
 @app.route("/api/v1/records", methods=['GET'])
 @jwt_required()
-def all_records(id):
+def all_records():
     """
     Fetches all data from health gov health finder
     :return : the response from the invoked function
@@ -72,7 +72,7 @@ def all_records(id):
     user = User.query.filter_by(id=current_user).first()
 
     if user:
-        return get_all_data_from_health_gov
+        return get_all_data_from_health_gov()
     else:
         responseObject = {
             'status': 'error',

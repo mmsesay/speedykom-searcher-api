@@ -82,5 +82,5 @@ def get_single_data_from_health_gov(params: str):
     else:
       return jsonify({
           "status": 404,
-          "data": "No result match for the searched keyword"
+          "data": "No result match for the provided id"
       })
