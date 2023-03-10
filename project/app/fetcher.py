@@ -33,7 +33,29 @@ def get_data_from_health_gov(params: str):
           "status": 404,
           "data": "No result match for the searched keyword"
       })
-    
+
+def get_all_data_from_health_gov():
+    """
+    Fetches all data from health gov health finder
+    :return : the json data response if available or an error
+    """
+    # make a call to the external api and get the response
+    response = requests.get(f'https://health.gov/myhealthfinder/api/v3/topicsearch.json?keyword=health').json()
+
+    # validate we got available result and return it otherwise 
+    if response['Result']['Total'] > 0:
+      return jsonify({
+          "status": 200,
+          "data": {
+            "records": response['Result']['Resources']['Resource'],
+            "totalRecordsCount": response['Result']['Total']
+          }
+      })
+    else:
+      return jsonify({
+          "status": 404,
+          "data": "No result match for the searched keyword"
+      })
 
 def get_single_data_from_health_gov(params: str):
     """

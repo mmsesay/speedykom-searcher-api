@@ -11,14 +11,14 @@ from flask import (jsonify, request, make_response)
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 
 from app import app, db
-from app.fetcher import get_data_from_health_gov, get_single_data_from_health_gov
+from app.fetcher import get_data_from_health_gov, get_single_data_from_health_gov, get_all_data_from_health_gov
 from app.models import User
 
 jwt = JWTManager(app)
 
-@app.route("/api/v1/search/<keyword>", methods=['GET'])
+@app.route("/api/v1/records/search/<keyword>", methods=['GET'])
 @jwt_required()
-def search_keyword(keyword):
+def search_record_by_keyword(keyword):
     """
     Fetches data from health gov health finder
     :params keyword: this is the keyword to query
@@ -38,9 +38,9 @@ def search_keyword(keyword):
         return make_response(jsonify(responseObject)), 401
 
 
-@app.route("/api/v1/record/<id>", methods=['GET'])
+@app.route("/api/v1/records/<id>", methods=['GET'])
 @jwt_required()
-def single_record(id):
+def single_records(id):
     """
     Fetches single data from health gov health finder
     :params id: this is the id to query
@@ -52,6 +52,27 @@ def single_record(id):
 
     if user:
         return get_single_data_from_health_gov(id)
+    else:
+        responseObject = {
+            'status': 'error',
+            'message': 'Provide a valid auth token.'
+        }
+        return make_response(jsonify(responseObject)), 401
+
+
+@app.route("/api/v1/records", methods=['GET'])
+@jwt_required()
+def all_records(id):
+    """
+    Fetches all data from health gov health finder
+    :return : the response from the invoked function
+    """
+
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(id=current_user).first()
+
+    if user:
+        return get_all_data_from_health_gov
     else:
         responseObject = {
             'status': 'error',
