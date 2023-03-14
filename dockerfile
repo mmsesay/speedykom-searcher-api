@@ -3,14 +3,20 @@ FROM python:3-alpine
 # Create app directory
 WORKDIR /app
 
-# Install app dependencies
-COPY requirements.txt ./
+# Copy the dependencies
+COPY ./requirements.txt /app
 
+# Install app dependencies
 RUN pip install -r requirements.txt
 
-# Bundle app source
+# Copy all app files
 COPY . .
 
+# Expose the access port
 EXPOSE 5000
 
-CMD ["python3", "/app/project/server.py"]
+# Set the enviroment runner
+ENV FLASK_APP=project/server.py
+
+# Initiaze start
+CMD ["flask", "run", "--host", "0.0.0.0"]
