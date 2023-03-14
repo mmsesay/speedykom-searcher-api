@@ -32,6 +32,16 @@ A simple web api that enable users to search for health related topics and a cou
   - `export FLASK_APP=project/server.py` to set the app for running
   - `flask run` to start the server
 
+- **Please run the following commands on your terminal to start the app using docker:**
+
+  - Please ensure you have docker installed and is running.
+  - Please ensure you have cloned the project and navigate to the root directory via the terminal
+  - Use `docker build -t searcher-api .` in your ternimal and press enter
+  - Use `docker images` to verify you see the image being created
+  - Use `docker run -p 5000:5000 searcher-api` to start the app. You can add `-d` flag to the command to run on detach mode.
+  - Finally, open your api testing tool to interact with the endpoints.
+
+
 - **To run the tests please run the following commands on your terminal:**
   - `git clone https://github.com/mmsesay/speedykom-searcher-api.git` Only if you have cloned it in the previous step above
   - `pytest -v`
