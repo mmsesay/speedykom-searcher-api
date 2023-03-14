@@ -7,6 +7,7 @@ Started writing :   8/March/2023
 Completed on    :   in progress
 """
 from datetime import timedelta
+import time
 from flask import (jsonify, request, make_response)
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 
@@ -72,7 +73,20 @@ def all_records():
     user = User.query.filter_by(id=current_user).first()
 
     if user:
-        return get_all_data_from_health_gov()
+        rec = get_all_data_from_health_gov()
+
+        if rec is None:
+            return jsonify({
+                "status": 400,
+                "message": "Response had been delayed"
+            })
+        else:
+            return rec
+        # check for 5 seconds
+        # if data is not available in 5 seconds
+        # return error/warning
+        # return data
+        # return 
     else:
         responseObject = {
             'status': 'error',
@@ -106,7 +120,7 @@ def register():
             db.session.commit()
 
             responseObject = {
-                'status': 'success',
+                'status': 200,
                 'message': 'Successfully registered.'
             }
             return make_response(jsonify(responseObject)), 201

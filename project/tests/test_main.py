@@ -56,7 +56,8 @@ class StartupTest(unittest.TestCase):
             content_type='application/json'
         )
         data = json.loads(response.data)
-        self.assertTrue(data['status'] == 'success')
+        print(data['status'])
+        self.assertTrue(data['status'] == 200)
         self.assertTrue(data['message'] == 'Successfully registered.')
         self.assertEqual(response.status_code, 201)
 
